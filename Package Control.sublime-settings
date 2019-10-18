@@ -1,16 +1,23 @@
 {
-  "installed_packages":
-  [
-    "AdvancedNewFile",
-    "All Autocomplete",
-    "Babel",
-    "Emmet",
-    "ERB Snippets",
-    "Git",
-    "GitGutter",
-    "Package Control",
-    "SCSS",
-    "SublimeLinter",
-    "SublimeLinter-rubocop"
-  ]
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+		"AdvancedNewFile",
+		"All Autocomplete",
+		"SublimeLinter-rubocop"
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"All Autocomplete",
+		"Babel",
+		"Emmet",
+		"ERB Snippets",
+		"Git",
+		"GitGutter",
+		"Package Control",
+		"SCSS",
+		"SublimeLinter",
+		"SublimeLinter-rubocop"
+	]
 }
