@@ -5,3 +5,67 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 
 # Quickly serve the current directory as HTTP
 alias serve='ruby -run -e httpd . -p 8000'  # Or python -m SimpleHTTPServer :)
+
+# Docker commands
+alias dcr="docker-compose run --rm app"
+alias dcu="docker-compose up"
+alias dcd="docker-compose down; rm tmp/pids/server.pid"
+
+# Rails commands
+alias rdbm="rails db:migrate"
+alias rdbr="rails db:rollback"
+alias rdbms="rails db:migrate:status"
+
+# Platform commands
+alias dumprc1="pg_restore -h localhost -p 3012 -U postgres -d rc1_development ~/Desktop/rc1.dump"
+alias dumprc2="pg_restore -h localhost -p 3022 -U postgres -d rc2_development ~/Desktop/rc2.dump"
+alias dockerdropcreate="sudo docker-compose run --rm app rake db:drop db:create"
+alias rspec="dcr rspec"
+
+# Git commands
+alias ga="git add"
+alias gc="git commit"
+alias gst="git status"
+alias gll="git pull"
+alias gllr="git pull --rebase"
+alias gp="git push"
+alias gco="git checkout"
+alias gf="git fetch"
+alias gm="git merge"
+alias gr="git rebase"
+alias grs="git reset"
+alias gs="git stash"
+alias gsa="git stash apply"
+alias gl="git log"
+alias glo="git log --oneline"
+alias gb="git branch"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gcp="git cherry-pick"
+gri () { git rebase -i @~"$1"}
+
+# Staircase rebasing (src -> next)
+grist () {
+  gco $2
+  C2=git rev-list --simplify-by-decoration -2 HEAD | sed -n '1p'
+  C1=git rev-list --simplify-by-decoration -2 HEAD | sed -n '2p'
+  COMMITS=( $( git log --decorate --pretty=format:"%h" --no-patch --reverse $C1..$C2 ) )
+
+  bkp="$2-bkp"
+  gb -m $bkp
+  gco $1
+  gco -b $2
+
+  for i in "${COMMITS[@]}"; do git cherry-pick $i; done
+  gr $1
+  gb -d $bkp
+}
+
+# Other services
+alias sguard="dcr bundle exec guard"
+
+# General commands
+alias zs="source ~/.zshrc"
+
+#Helpers
+alias fixbt="sudo systemctl restart bluetooth"

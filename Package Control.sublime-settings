@@ -2,9 +2,6 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"AdvancedNewFile",
-		"All Autocomplete",
-		"SublimeLinter-rubocop"
 	],
 	"installed_packages":
 	[
